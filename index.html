@@ -19,7 +19,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZ2Vvc3RhcnRlcnMiLCJhIjoiMGNxekwxayJ9.sE1YC8Zx
 var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
-    center: [-74.50, 40], // starting position [lng, lat]
+    center: [41.390205, 2.154007], // starting position [lng, lat]
     zoom: 9 // starting zoom
 });
 
@@ -28,21 +28,45 @@ map.on('load', loadGeojson());
 
 function loadGeojson(e) {
     
+    fetch('data/tile0.geojson').then(function(res){
+        return res.json();
+    }).then(function(geojson){
+
+        addGeojson(geojson, 'tile0');
+
+    });
+
     fetch('data/tile1.geojson').then(function(res){
         return res.json();
     }).then(function(geojson){
 
-        addGeojson(geojson);
+        addGeojson(geojson, 'tile1');
 
     });
+
+    fetch('data/tile2.geojson').then(function(res){
+        return res.json();
+    }).then(function(geojson){
+
+        addGeojson(geojson, 'tile2');
+
+    });
+
+    fetch('data/tile3.geojson').then(function(res){
+        return res.json();
+    }).then(function(geojson){
+
+        addGeojson(geojson, 'tile3');
+
+    });            
 }
 
 
-function addGeojson(geojson){
+function addGeojson(geojson, sourcename){
 
 
 map.addLayer({
-        "id": "route",
+        "id": sourcename,
         "type": "line",
         "source": {
             "type": "geojson",
@@ -53,7 +77,7 @@ map.addLayer({
             "line-cap": "round"
         },
         "paint": {
-            "line-color": "#888",
+            "line-color": "#76ef0a",
             "line-width": 8
         }
     });
