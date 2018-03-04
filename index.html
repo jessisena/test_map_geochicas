@@ -18,7 +18,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiZ2Vvc3RhcnRlcnMiLCJhIjoiMGNxekwxayJ9.sE1YC8Zxwzjh4CQeZiZN_g';
 var map = new mapboxgl.Map({
     container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v9', // stylesheet location
+    style: 'mapbox://styles/mapbox/dark-v9', // stylesheet location
     center: [2.154007, 41.390205], // starting position [lng, lat]
     zoom: 9 // starting zoom
 });
@@ -78,7 +78,7 @@ map.addLayer({
         },
         "paint": {
             //"line-color":  "#76ef0a",
-            'line-color': ['case', ["=", ['get', 'gender'], 'Female'], '#76ef0a', '#FFA463'],
+            'line-color': ['case', ['==', ['get', 'gender'], 'Female'], '#76ef0a', '#FFA463'],
             "line-width": 8
         }
     });
