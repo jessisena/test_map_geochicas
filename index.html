@@ -78,7 +78,7 @@ map.addLayer({
         },
         "paint": {
             //"line-color":  "#76ef0a",
-            'line-color': ['gender === "Female"', 'red', 'blue'],
+            'line-color': ['case', ["=", ['get', 'gender'], 'Female'], '#76ef0a', '#FFA463'],
             "line-width": 8
         }
     });
