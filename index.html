@@ -79,7 +79,7 @@ map.addLayer({
         "paint": {
             //"line-color":  "#76ef0a",
             'line-color': ['case', ['==', ['get', 'gender'], 'Female'], '#76ef0a', '#FFA463'],
-            "line-width": 8
+            "line-width": 4
         }
     });
 
@@ -96,9 +96,15 @@ map.addLayer({
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
 
+        var html = '<div><p>'+name+'</p><p>'+gender+'</p></div>';
+        if (gender === 'Female'){
+            html = '<div><p>'+name+'</p><p>'+gender+'</p> <p><a href=\''+link+'\'>Wikipedia info</a></p></div>';
+        }
+        
+
         new mapboxgl.Popup()
             .setLngLat(coordinates[0])
-            .setHTML('<div><p>'+name+'</p><p>'+gender+'</p> <p><a href=\''+link+'\'>Wikipedia info</a></p></div>')
+            .setHTML()
             .addTo(map);
     });    
 
