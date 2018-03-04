@@ -84,7 +84,9 @@ map.addLayer({
 
     map.on('click', sourcename, function (e) {
         var coordinates = e.features[0].geometry.coordinates.slice(1);
-        var description = e.features[0].properties.wikipedia_link;
+        var link = e.features[0].properties.wikipedia_link;
+        var name = e.features[0].properties.name;
+        var gender = e.features[0].properties.gender;
 
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears
@@ -95,7 +97,7 @@ map.addLayer({
 
         new mapboxgl.Popup()
             .setLngLat(coordinates[0])
-            .setHTML(description)
+            .setHTML('<div><p>'+name+'</p><p>'+gender+'</p> <p><a href=\''+description+'\'>Wikipedia info</a></p></div>')
             .addTo(map);
     });    
 
