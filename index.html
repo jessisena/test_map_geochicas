@@ -84,7 +84,7 @@ map.addLayer({
     });
 
     map.on('click', sourcename, function (e) {
-        var coordinates = e.features[0].geometry.coordinates.slice(1);
+        //var coordinates = e.features[0].geometry.coordinates.slice(1);
         var link = e.features[0].properties.wikipedia_link;
         var name = e.features[0].properties.name;
         var gender = e.features[0].properties.gender;
@@ -92,9 +92,9 @@ map.addLayer({
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears
         // over the copy being pointed to.
-        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+/*         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-        }
+        } */
 
         var html = '<div><p>'+name+'</p><p>'+gender+'</p></div>';
         if (gender === 'Female'){
@@ -103,8 +103,8 @@ map.addLayer({
         
 
         new mapboxgl.Popup()
-            .setLngLat(coordinates[0])
-            .setHTML()
+            .setLngLat(e.lngLat)
+            .setHTML(html)
             .addTo(map);
     });    
 
