@@ -29,8 +29,35 @@ map.on('load', loadGeojson());
 function loadGeojson(e) {
     
     fetch('data/tile1.geojson').then(function(res){
-        console.log(res.json());
+        return res.json();
+    }).then(function(geojson){
+
+        addGeojson(geojson);
+
     });
+}
+
+
+function addGeojson(geojson){
+
+
+map.addLayer({
+        "id": "route",
+        "type": "line",
+        "source": {
+            "type": "geojson",
+            "data": geojson
+        },
+        "layout": {
+            "line-join": "round",
+            "line-cap": "round"
+        },
+        "paint": {
+            "line-color": "#888",
+            "line-width": 8
+        }
+    });
+
 }
 
 </script>
