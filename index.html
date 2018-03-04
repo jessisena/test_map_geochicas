@@ -83,8 +83,8 @@ map.addLayer({
     });
 
     map.on('click', sourcename, function (e) {
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = e.features[0].properties.wikipedia_url;
+        var coordinates = e.features[0].geometry.coordinates.slice(1);
+        var description = e.features[0].properties.wikipedia_link;
 
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears
