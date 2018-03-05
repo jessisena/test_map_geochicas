@@ -86,7 +86,7 @@ function addGeojson(geojson, sourcename = Date.now()){
 
 
 map.addLayer({
-        "id": sourcename,
+        "id": `${sourcename}`,
         "type": "line",
         "source": {
             "type": "geojson",
@@ -103,7 +103,7 @@ map.addLayer({
         }
     });
 
-    map.on('click', sourcename, function (e) {
+    map.on('click', `${sourcename}`, function (e) {
         //var coordinates = e.features[0].geometry.coordinates.slice(1);
         var link = e.features[0].properties.wikipedia_link;
         var name = e.features[0].properties.name;
