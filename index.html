@@ -36,7 +36,7 @@ function loadGeojsonBarcelona(){
             return res.json();
         }).then(function(geojson){
 
-            addGeojson(geojson, listNames[i]);
+            addGeojson(geojson);
 
         });
     }
@@ -81,7 +81,8 @@ function loadGeojson(e) {
 }
 
 
-function addGeojson(geojson, sourcename){
+function addGeojson(geojson, sourcename = Date.now()){
+
 
 
 map.addLayer({
